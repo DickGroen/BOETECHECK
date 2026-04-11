@@ -3,7 +3,8 @@ import type { AnalyzeResult } from '../types'
 const verdictLabel: Record<AnalyzeResult['verdict'], string> = {
   waarschijnlijk: '✅ Waarschijnlijk bezwaarwaardig',
   mogelijk: '⚖️ Mogelijk bezwaarwaardig',
-  laag: '📋 Lage kans op bezwaar',
+  lage_kans: '📋 Lage kans op bezwaar',
+onvoldoende_leesbaar: '📷 Upload niet goed leesbaar',
 }
 
 const verdictColor: Record<AnalyzeResult['verdict'], string> = {
