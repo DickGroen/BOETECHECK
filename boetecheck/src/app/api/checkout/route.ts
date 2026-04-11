@@ -59,7 +59,7 @@ export async function POST(request: NextRequest) {
         },
       ],
       metadata,
-      success_url: `${APP_URL}/succes?session_id={CHECKOUT_SESSION_ID}`,
+      success_url: `${APP_URL}/succes?session_id={CHECKOUT_SESSION_ID}&product=${body.result?.bedrag?.includes("49") ? "49" : "39"}`,
       cancel_url: `${APP_URL}/geannuleerd`,
       locale: 'nl',
       payment_intent_data: {
