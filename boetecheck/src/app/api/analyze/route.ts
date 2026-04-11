@@ -1,4 +1,3 @@
-declare module 'pdf-parse';
 import { NextRequest, NextResponse } from 'next/server'
 import { analyzeBoete } from '@/lib/analyze'
 import type { AnalyzeResult } from '@/lib/types'
@@ -38,7 +37,7 @@ export async function POST(request: NextRequest) {
       // Extract text from PDF
       let extractedText = ''
       try {
-        const pdfParse = (await import('pdf-parse')).default
+       const pdfParse = (await import('pdf-parse') as any).default
         const pdfData = await pdfParse(buffer)
         extractedText = pdfData.text
       } catch {
