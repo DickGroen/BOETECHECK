@@ -251,6 +251,10 @@ function FaqList() {
       a: 'Nee — en niemand die eerlijk is kan dat. We geven alleen aan of er juridische aanknopingspunten lijken te zijn.',
     },
     {
+  q: 'Waarom niet zelf AI vragen om een bezwaarschrift?',
+  a: 'Dat kan. En een deel van de mensen doet dat ook. Maar de meeste mensen willen niet zelf uitzoeken wat ze moeten vragen, wat relevant is in hun situatie, en of het juridisch klopt. Zeker bij iets met een harde deadline en juridische gevolgen. Een losse AI prompt geeft een algemeen antwoord. BoeteCheck geeft een beoordeling van jouw specifieke beschikking — op concrete aanknopingspunten, gefilterd op wat in jouw zaak relevant is, vertaald naar een duidelijke uitkomst. Je hoeft niet zelf te bedenken wat je moet vragen of controleren. Als iemand precies weet wat hij doet, kan hij het zelf. Maar de meeste mensen willen gewoon weten: moet ik hier iets mee, en zo ja wat? BoeteCheck geeft dat antwoord — snel, concreet, zonder dat je zelf het risico loopt iets te missen.',
+},
+    {
       q: 'Voor welke boetes werkt dit?',
       a: 'Verkeersboetes, parkeerboetes en Mulder-feiten. Niet voor strafrecht, belastingdienst of andere sancties buiten het bestuursrecht.',
     },
