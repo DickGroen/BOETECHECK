@@ -1,3 +1,4 @@
+declare module 'pdf-parse';
 import { NextRequest, NextResponse } from 'next/server'
 import { analyzeBoete } from '@/lib/analyze'
 import type { AnalyzeResult } from '@/lib/types'
