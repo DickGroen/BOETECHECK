@@ -1,7 +1,12 @@
 export type AnalyzeResult = {
-  verdict: 'waarschijnlijk' | 'mogelijk' | 'laag'
+  verdict: 'waarschijnlijk' | 'mogelijk' | 'lage_kans' | 'onvoldoende_leesbaar'
+  confidence?: 'laag' | 'midden' | 'hoog'
   summary: string
   findings: Finding[]
+  what_this_means?: string
+  recommended_next_step?: string
+  deadline_warning?: string
+  disclaimer?: string
   kenteken?: string
   bedrag?: string
   datum?: string
@@ -9,16 +14,12 @@ export type AnalyzeResult = {
 }
 
 export type Finding = {
-  type: 'positief' | 'aandachtspunt' | 'fout'
-  tekst: string
+  title?: string
+  severity?: 'laag' | 'midden' | 'hoog'
+  description?: string
+  type?: 'positief' | 'aandachtspunt' | 'fout'
+  tekst?: string
   artikel?: string
-}
-
-export type UploadResponse = {
-  success: boolean
-  fileId: string
-  filename: string
-  error?: string
 }
 
 export type OrderMetadata = {
@@ -28,7 +29,7 @@ export type OrderMetadata = {
   deadline?: string
   verdict: string
   summary: string
-  findings: string // JSON stringified Finding[]
+  findings: string
 }
 
 export type CheckoutSession = {
