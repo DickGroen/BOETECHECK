@@ -7,6 +7,8 @@ import styles from './page.module.css'
 
 function CheckoutButton({ price, label, variant }: { price: number; label: string; variant: 'default' | 'featured' }) {
   const [loading, setLoading] = useState(false)
+  const [machtiging, setMachtiging] = useState(false)
+  const needsMachtiging = price === 49
 
   const handleClick = async () => {
     setLoading(true)
@@ -31,26 +33,41 @@ function CheckoutButton({ price, label, variant }: { price: number; label: strin
   }
 
   return (
-    <button
-      onClick={handleClick}
-      disabled={loading}
-      style={{
-        width: '100%',
-        marginTop: '20px',
-        padding: '13px',
-        borderRadius: '10px',
-        border: 'none',
-        cursor: loading ? 'not-allowed' : 'pointer',
-        fontFamily: 'inherit',
-        fontSize: '14px',
-        fontWeight: 500,
-        background: variant === 'featured' ? '#12B76A' : '#0A2540',
-        color: 'white',
-        opacity: loading ? 0.7 : 1,
-      }}
-    >
-      {loading ? 'Doorsturen…' : label}
-    </button>
+    <div style={{ marginTop: '20px' }}>
+      {needsMachtiging && (
+        <label style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', marginBottom: '12px', cursor: 'pointer' }}>
+          <input
+            type="checkbox"
+            checked={machtiging}
+            onChange={(e) => setMachtiging(e.target.checked)}
+            style={{ marginTop: '2px', flexShrink: 0, accentColor: '#12B76A', width: '16px', height: '16px' }}
+          />
+          <span style={{ fontSize: '12px', color: 'rgba(255,255,255,0.75)', lineHeight: '1.5' }}>
+            Ik machtig BoeteCheck om namens mij bezwaar in te dienen bij het CJIB.
+          </span>
+        </label>
+      )}
+      <button
+        onClick={handleClick}
+        disabled={loading || (needsMachtiging && !machtiging)}
+        style={{
+          width: '100%',
+          padding: '13px',
+          borderRadius: '10px',
+          border: 'none',
+          cursor: (loading || (needsMachtiging && !machtiging)) ? 'not-allowed' : 'pointer',
+          fontFamily: 'inherit',
+          fontSize: '14px',
+          fontWeight: 500,
+          background: variant === 'featured' ? '#12B76A' : '#0A2540',
+          color: 'white',
+          opacity: (loading || (needsMachtiging && !machtiging)) ? 0.5 : 1,
+          transition: 'opacity 0.2s',
+        }}
+      >
+        {loading ? 'Doorsturen…' : label}
+      </button>
+    </div>
   )
 }
 
