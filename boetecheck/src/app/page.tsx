@@ -1,7 +1,58 @@
+'use client'
+import { useState } from 'react'
 import Nav from '@/components/Nav'
 import UploadFlow from '@/components/UploadFlow'
 import FaqAccordion from '@/components/FaqAccordion'
 import styles from './page.module.css'
+
+function CheckoutButton({ price, label, variant }: { price: number; label: string; variant: 'default' | 'featured' }) {
+  const [loading, setLoading] = useState(false)
+
+  const handleClick = async () => {
+    setLoading(true)
+    try {
+      const res = await fetch('/api/checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          result: {
+            verdict: 'mogelijk',
+            summary: 'Directe bestelling via prijskaart.',
+            findings: [],
+            bedrag: price === 39 ? '€39' : '€49',
+          },
+        }),
+      })
+      const data = await res.json()
+      if (data.url) window.location.href = data.url
+    } catch {
+      setLoading(false)
+    }
+  }
+
+  return (
+    <button
+      onClick={handleClick}
+      disabled={loading}
+      style={{
+        width: '100%',
+        marginTop: '20px',
+        padding: '13px',
+        borderRadius: '10px',
+        border: 'none',
+        cursor: loading ? 'not-allowed' : 'pointer',
+        fontFamily: 'inherit',
+        fontSize: '14px',
+        fontWeight: 500,
+        background: variant === 'featured' ? '#12B76A' : '#0A2540',
+        color: 'white',
+        opacity: loading ? 0.7 : 1,
+      }}
+    >
+      {loading ? 'Doorsturen…' : label}
+    </button>
+  )
+}
 
 export default function Home() {
   return (
@@ -128,6 +179,9 @@ export default function Home() {
                 <li>Deadline-herinnering per email</li>
                 <li>Gratis stappenplan zelf doen</li>
               </ul>
+              <a href="#upload" style={{ display: 'block', marginTop: '20px', padding: '13px', borderRadius: '10px', border: '1px solid #E3E8EF', textAlign: 'center', fontFamily: 'inherit', fontSize: '14px', fontWeight: 500, color: '#0A2540', textDecoration: 'none' }}>
+                Gratis starten
+              </a>
             </div>
             <div className={styles.priceCard}>
               <div className={styles.priceLabel}>Brief op maat</div>
@@ -139,6 +193,7 @@ export default function Home() {
                 <li>Instructie + juist adres CJIB</li>
                 <li>Ondersteuning bij vragen</li>
               </ul>
+              <CheckoutButton price={39} label="Bestellen voor €39" variant="default" />
             </div>
             <div className={`${styles.priceCard} ${styles.priceCardFeatured}`}>
               <div className={styles.priceLabelLight}>Volledig ontzorgd</div>
@@ -150,6 +205,7 @@ export default function Home() {
                 <li>Jij hoeft niets te versturen</li>
                 <li>Ondersteuning bij vragen</li>
               </ul>
+              <CheckoutButton price={49} label="Bestellen voor €49 →" variant="featured" />
             </div>
           </div>
           <div className={styles.rekensom}>
@@ -225,14 +281,17 @@ export default function Home() {
           </div>
         </div>
         <div className={`container ${styles.footerDisclaimer}`}>
-          BoeteCheck is geen advocatenkantoor. Bij de €49 optie treedt BoeteCheck op als gemachtigde namens de klant voor het indienen van bezwaar bij het CJIB. Alle analyses zijn indicatief en op basis van geautomatiseerde verwerking. Dit is geen juridisch advies. De officier van justitie beslist. Let op: bezwaar moet binnen 6 weken na dagtekening van de beschikking zijn ingediend bij het CJIB.
+          BoeteCheck is geen advocatenkantoor. Bij de €49 optie treedt BoeteCheck op als gemachtigde
+          namens de klant voor het indienen van bezwaar bij het CJIB. Alle analyses zijn indicatief
+          en op basis van geautomatiseerde verwerking. Dit is geen juridisch advies. De officier van
+          justitie beslist. Let op: bezwaar moet binnen 6 weken na dagtekening van de beschikking
+          zijn ingediend bij het CJIB.
         </div>
       </footer>
     </>
   )
 }
 
-// FAQ client component inline
 function FaqList() {
   const faqs = [
     {
@@ -265,7 +324,7 @@ function FaqList() {
     },
     {
       q: 'Waarom niet zelf AI vragen om een bezwaarschrift?',
-      a: 'Dat kan. En een deel van de mensen doet dat ook. Maar de meeste mensen willen niet zelf uitzoeken wat ze moeten vragen, wat relevant is in hun situatie, en of het juridisch klopt. Zeker bij iets met een harde deadline en juridische gevolgen. Een losse AI prompt geeft een algemeen antwoord. BoeteCheck geeft een beoordeling van jouw specifieke beschikking — op concrete aanknopingspunten, gefilterd op wat in jouw zaak relevant is, vertaald naar een duidelijke uitkomst. Je hoeft niet zelf te bedenken wat je moet vragen of controleren. Als iemand precies weet wat hij doet, kan hij het zelf. Maar de meeste mensen willen gewoon weten: moet ik hier iets mee, en zo ja wat? BoeteCheck geeft dat antwoord — snel, concreet, zonder dat je zelf het risico loopt iets te missen.',
+      a: 'Dat kan. En een deel van de mensen doet dat ook. Maar de meeste mensen willen niet zelf uitzoeken wat ze moeten vragen, wat relevant is in hun situatie, en of het juridisch klopt. Zeker bij iets met een harde deadline en juridische gevolgen. Een losse AI prompt geeft een algemeen antwoord. BoeteCheck geeft een beoordeling van jouw specifieke beschikking — op concrete aanknopingspunten, gefilterd op wat in jouw zaak relevant is, vertaald naar een duidelijke uitkomst. Als iemand precies weet wat hij doet, kan hij het zelf. Maar de meeste mensen willen gewoon weten: moet ik hier iets mee, en zo ja wat? BoeteCheck geeft dat antwoord — snel, concreet, zonder dat je zelf het risico loopt iets te missen.',
     },
     {
       q: 'Voor welke boetes werkt dit?',
