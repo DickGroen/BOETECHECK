@@ -51,7 +51,7 @@ export async function POST(request: NextRequest) {
               subject: `⏰ Nog 5 dagen — bezwaar deadline nadert${result.kenteken ? ` (${result.kenteken})` : ''}`,
               html: deadlineReminderHtml(result.deadline, result.kenteken, APP_URL),
               text: deadlineReminderText(result.deadline, result.kenteken),
-              scheduledAt: reminderDate.toISOString(),
+              
             })
           }
         }
