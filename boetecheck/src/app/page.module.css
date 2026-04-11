@@ -505,3 +505,14 @@
   .heroActions { flex-direction: column; }
   .trustInner { gap: 12px; }
 }
+
+.pricingGrid3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+@media (max-width: 640px) {
+  .pricingGrid3 { grid-template-columns: 1fr; }
+}
