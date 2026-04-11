@@ -1,5 +1,6 @@
 import Nav from '@/components/Nav'
 import UploadFlow from '@/components/UploadFlow'
+import FaqAccordion from '@/components/FaqAccordion'
 import styles from './page.module.css'
 
 export default function Home() {
@@ -88,7 +89,7 @@ export default function Home() {
               {
                 num: 3,
                 title: 'Kies wat je doet',
-                desc: 'Helder rapport: waarschijnlijk / misschien / lage kans. Bij aanknopingspunten helpen we voor €39 — of zelf doen is gratis.',
+                desc: 'Helder rapport: waarschijnlijk / misschien / lage kans. Bij aanknopingspunten regelen wij alles voor €49 — of doe het zelf voor €39.',
                 tag: 'Jij beslist',
               },
             ].map((step) => (
@@ -114,9 +115,9 @@ export default function Home() {
           <div className="section-label">Transparante kosten</div>
           <h2 className={styles.h2}>Geen addertje onder het gras.</h2>
           <p className={styles.sectionSub}>
-            De check is altijd gratis. Je betaalt alleen als je wil dat wij het bezwaar schrijven.
+            De check is altijd gratis. Kies daarna hoeveel ontzorging je wil.
           </p>
-          <div className={styles.pricingGrid}>
+          <div className={styles.pricingGrid3}>
             <div className={styles.priceCard}>
               <div className={styles.priceLabel}>De check</div>
               <div className={styles.priceAmount}>€0</div>
@@ -125,17 +126,28 @@ export default function Home() {
                 <li>Analyse op 40+ formele punten</li>
                 <li>Helder rapport met uitkomst</li>
                 <li>Deadline-herinnering per email</li>
-                <li>Gratis stappenplan bij afwijzing</li>
+                <li>Gratis stappenplan zelf doen</li>
+              </ul>
+            </div>
+            <div className={styles.priceCard}>
+              <div className={styles.priceLabel}>Brief op maat</div>
+              <div className={styles.priceAmount}>€39</div>
+              <div className={styles.priceSub}>Eenmalig. Jij verstuurt.</div>
+              <ul className={styles.priceList}>
+                <li>Compleet bezwaarschrift op maat</li>
+                <li>Gebaseerd op jouw beschikking</li>
+                <li>Instructie + juist adres CJIB</li>
+                <li>Ondersteuning bij vragen</li>
               </ul>
             </div>
             <div className={`${styles.priceCard} ${styles.priceCardFeatured}`}>
-              <div className={styles.priceLabelLight}>Hulp bij bezwaar</div>
-              <div className={styles.priceAmountLight}>€39</div>
-              <div className={styles.priceSubLight}>Eenmalig. Geen abonnement.</div>
+              <div className={styles.priceLabelLight}>Volledig ontzorgd</div>
+              <div className={styles.priceAmountLight}>€49</div>
+              <div className={styles.priceSubLight}>Eenmalig. Jij hoeft niets te doen.</div>
               <ul className={styles.priceListLight}>
                 <li>Compleet bezwaarschrift op maat</li>
-                <li>Gebaseerd op jouw beschikking</li>
-                <li>Instructie hoe je het verstuurt</li>
+                <li>Wij dienen in via CJIB-portaal</li>
+                <li>Jij hoeft niets te versturen</li>
                 <li>Ondersteuning bij vragen</li>
               </ul>
             </div>
@@ -143,10 +155,10 @@ export default function Home() {
           <div className={styles.rekensom}>
             <div>
               <strong>Rekensom: boete €120</strong>
-              <span> — bezwaar gegrond = €120 terug. Kosten BoeteCheck = €39. Je bespaart €81.</span>
-              <span className={styles.rekensomFine}> Bezwaar afgewezen? Dan ben je €39 kwijt.</span>
+              <span> — bezwaar gegrond = €120 terug. Kosten BoeteCheck = €49. Je bespaart €71.</span>
+              <span className={styles.rekensomFine}> Bezwaar afgewezen? Dan ben je €49 kwijt.</span>
             </div>
-            <div className={styles.rekensomBadge}>Je bespaart €81</div>
+            <div className={styles.rekensomBadge}>Je bespaart €71</div>
           </div>
         </div>
       </section>
@@ -162,7 +174,7 @@ export default function Home() {
               { icon: '🔐', title: 'Versleuteld uploaden', desc: 'Alle bestanden via SSL. Geen onversleutelde opslag, nooit.' },
               { icon: '🇳🇱', title: 'Nederlandse servers', desc: 'Je document staat in Nederland. Volledig binnen EU-wetgeving.' },
               { icon: '🗑️', title: 'Automatisch verwijderd', desc: 'Na 30 dagen definitief weg. Eerder verwijderen via link in je rapport.' },
-              { icon: '🚫', title: 'Geen doorverkoop', desc: 'We verkopen geen data. We dienen nooit bezwaar in zonder jouw opdracht.' },
+              { icon: '🚫', title: 'Geen doorverkoop', desc: 'We verkopen geen data aan derden. We dienen alleen in met jouw expliciete opdracht.' },
             ].map((item) => (
               <div key={item.title} className={styles.securityCard}>
                 <div className={styles.securityIcon}>{item.icon}</div>
@@ -178,7 +190,7 @@ export default function Home() {
       <section className={styles.faqSection} id="faq">
         <div className="container">
           <div className="section-label">Veelgestelde vragen</div>
-          <h2 className={styles.h2}>Alle "ja maar" antwoorden.</h2>
+          <h2 className={styles.h2}>Alle &quot;ja maar&quot; antwoorden.</h2>
           <FaqList />
         </div>
       </section>
@@ -213,10 +225,7 @@ export default function Home() {
           </div>
         </div>
         <div className={`container ${styles.footerDisclaimer}`}>
-          BoeteCheck is geen advocatenkantoor en treedt niet op als gemachtigde, tenzij je apart opdracht
-          geeft voor het opstellen van een bezwaarschrift. Alle analyses zijn indicatief en op basis van
-          geautomatiseerde verwerking. Dit is geen juridisch advies. De officier van justitie beslist.
-          Let op: bezwaar moet binnen 6 weken na dagtekening van de beschikking zijn ingediend bij het CJIB.
+          BoeteCheck is geen advocatenkantoor. Bij de €49 optie treedt BoeteCheck op als gemachtigde namens de klant voor het indienen van bezwaar bij het CJIB. Alle analyses zijn indicatief en op basis van geautomatiseerde verwerking. Dit is geen juridisch advies. De officier van justitie beslist. Let op: bezwaar moet binnen 6 weken na dagtekening van de beschikking zijn ingediend bij het CJIB.
         </div>
       </footer>
     </>
@@ -232,7 +241,11 @@ function FaqList() {
     },
     {
       q: 'Wat kost het?',
-      a: 'De check is altijd gratis. Wil je dat wij je bezwaarschrift schrijven, dan is dat €39 eenmalig. Zelf doen met ons stappenplan is ook gratis. Geen abonnementen, geen verrassingen.',
+      a: 'De check is altijd gratis. Wil je dat wij het bezwaarschrift schrijven en jij verstuurt, dan is dat €39. Wil je volledig ontzorgd worden — wij dienen ook in — dan is dat €49. Geen abonnementen, geen verrassingen.',
+    },
+    {
+      q: 'Wat is het verschil tussen €39 en €49?',
+      a: 'Bij €39 ontvang je een kant-en-klare brief met instructie — jij verstuurt hem zelf naar het CJIB. Bij €49 regelen wij alles: wij dienen het bezwaar digitaal in via het CJIB-portaal. Jij hoeft niets te doen.',
     },
     {
       q: 'Hoe snel moet ik zijn?',
@@ -244,16 +257,16 @@ function FaqList() {
     },
     {
       q: 'Dienen jullie het bezwaar in voor me?',
-      a: 'Standaard niet. We leveren een kant-en-klare brief plus instructie. Jij verstuurt — dat houdt de kosten laag en jij de controle.',
+      a: 'Bij de €49 optie dienen wij het bezwaar digitaal in via het CJIB-portaal — jij hoeft niets te doen. Bij de €39 optie ontvang je een kant-en-klare brief met instructie en verstuur jij zelf.',
     },
     {
       q: 'Garanderen jullie succes?',
-      a: 'Nee — en niemand die eerlijk is kan dat. We geven alleen aan of er juridische aanknopingspunten lijken te zijn.',
+      a: 'Nee — en niemand die eerlijk is kan dat. We geven alleen aan of er juridische aanknopingspunten lijken te zijn. Bij afwijzing ben je de kosten kwijt, maar niet meer dan dat.',
     },
     {
-  q: 'Waarom niet zelf AI vragen om een bezwaarschrift?',
-  a: 'Dat kan. En een deel van de mensen doet dat ook. Maar de meeste mensen willen niet zelf uitzoeken wat ze moeten vragen, wat relevant is in hun situatie, en of het juridisch klopt. Zeker bij iets met een harde deadline en juridische gevolgen. Een losse AI prompt geeft een algemeen antwoord. BoeteCheck geeft een beoordeling van jouw specifieke beschikking — op concrete aanknopingspunten, gefilterd op wat in jouw zaak relevant is, vertaald naar een duidelijke uitkomst. Je hoeft niet zelf te bedenken wat je moet vragen of controleren. Als iemand precies weet wat hij doet, kan hij het zelf. Maar de meeste mensen willen gewoon weten: moet ik hier iets mee, en zo ja wat? BoeteCheck geeft dat antwoord — snel, concreet, zonder dat je zelf het risico loopt iets te missen.',
-},
+      q: 'Waarom niet zelf AI vragen om een bezwaarschrift?',
+      a: 'Dat kan. En een deel van de mensen doet dat ook. Maar de meeste mensen willen niet zelf uitzoeken wat ze moeten vragen, wat relevant is in hun situatie, en of het juridisch klopt. Zeker bij iets met een harde deadline en juridische gevolgen. Een losse AI prompt geeft een algemeen antwoord. BoeteCheck geeft een beoordeling van jouw specifieke beschikking — op concrete aanknopingspunten, gefilterd op wat in jouw zaak relevant is, vertaald naar een duidelijke uitkomst. Je hoeft niet zelf te bedenken wat je moet vragen of controleren. Als iemand precies weet wat hij doet, kan hij het zelf. Maar de meeste mensen willen gewoon weten: moet ik hier iets mee, en zo ja wat? BoeteCheck geeft dat antwoord — snel, concreet, zonder dat je zelf het risico loopt iets te missen.',
+    },
     {
       q: 'Voor welke boetes werkt dit?',
       a: 'Verkeersboetes, parkeerboetes en Mulder-feiten. Niet voor strafrecht, belastingdienst of andere sancties buiten het bestuursrecht.',
@@ -262,6 +275,3 @@ function FaqList() {
 
   return <FaqAccordion faqs={faqs} />
 }
-
-// We need a client component for the accordion
-import FaqAccordion from '@/components/FaqAccordion'
