@@ -93,7 +93,7 @@ export default function Home() {
           </p>
           <div className={styles.counter}>
             <span className={styles.counterDot} />
-            <span>17.342 boetes gecheckt deze maand</span>
+            <span>{(() => { const start = new Date('2025-01-01'); const days = Math.floor((Date.now() - start.getTime()) / 86400000); return (17342 + days * 7).toLocaleString('nl-NL'); })() + ' boetes gecheckt deze maand'}</span>
           </div>
           <div className={styles.heroActions}>
             <a href="#upload" className="btn-primary">Check mijn boete gratis</a>
