@@ -4,13 +4,14 @@ const verdictLabel: Record<AnalyzeResult['verdict'], string> = {
   waarschijnlijk: '✅ Waarschijnlijk bezwaarwaardig',
   mogelijk: '⚖️ Mogelijk bezwaarwaardig',
   lage_kans: '📋 Lage kans op bezwaar',
-onvoldoende_leesbaar: '📷 Upload niet goed leesbaar',
+  onvoldoende_leesbaar: '📷 Upload niet goed leesbaar',
 }
 
 const verdictColor: Record<AnalyzeResult['verdict'], string> = {
   waarschijnlijk: '#0E9456',
   mogelijk: '#B45309',
-  laag: '#64748B',
+  lage_kans: '#64748B',       // ← was 'laag'
+  onvoldoende_leesbaar: '#94A3B8',
 }
 
 export function rapportEmailHtml(result: AnalyzeResult, appUrl: string): string {
@@ -114,7 +115,7 @@ export function rapportEmailHtml(result: AnalyzeResult, appUrl: string): string 
 
             <!-- CTA -->
             ${
-              result.verdict !== 'laag'
+              result.verdict !== 'lage_kans'  // ← was 'laag'
                 ? `<table cellpadding="0" cellspacing="0" style="margin-top:24px;width:100%">
                 <tr>
                   <td style="background:#0A2540;border-radius:10px;text-align:center;padding:16px">
