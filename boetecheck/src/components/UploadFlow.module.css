@@ -81,7 +81,7 @@
   text-align: center;
   cursor: pointer;
   transition: border-color 0.2s, background 0.2s;
-  margin-bottom: 16px;
+  margin-bottom: 0;
 }
 
 .dropzone:hover {
@@ -110,6 +110,32 @@
   font-size: 13px;
   color: var(--muted);
   margin: 0;
+}
+
+/* ── Of-scheider + knop ── */
+.orDivider {
+  text-align: center;
+  font-size: 12px;
+  color: var(--muted);
+  margin: 10px 0;
+}
+
+.chooseFileBtn {
+  width: 100%;
+  background: none;
+  border: 1px solid var(--border, #E3E8EF);
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 14px;
+  color: var(--navy);
+  cursor: pointer;
+  margin-bottom: 16px;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.chooseFileBtn:hover {
+  border-color: var(--green);
+  background: #F6FEF9;
 }
 
 /* ── File preview ── */
