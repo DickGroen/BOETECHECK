@@ -138,19 +138,34 @@ export default function UploadFlow() {
         {/* UPLOAD */}
         {step === 'upload' && (
           <div className={styles.card}>
+            <input
+              ref={inputRef}
+              type="file"
+              accept=".jpg,.jpeg,.png,.pdf,.heic"
+              className={styles.hiddenInput}
+              onChange={(e) => e.target.files?.[0] && handleFile(e.target.files[0])}
+            />
             {!file ? (
-              <div
-                className={`${styles.dropzone} ${dragging ? styles.dragging : ''}`}
-                onDragOver={(e) => { e.preventDefault(); setDragging(true) }}
-                onDragLeave={() => setDragging(false)}
-                onDrop={handleDrop}
-                onClick={() => inputRef.current?.click()}
-              >
-                <input ref={inputRef} type="file" accept=".jpg,.jpeg,.png,.pdf,.heic" className={styles.hiddenInput} onChange={(e) => e.target.files?.[0] && handleFile(e.target.files[0])} />
-                <div className={styles.dropIcon}>📄</div>
-                <h3 className={styles.dropTitle}>Sleep je beschikking hier</h3>
-                <p className={styles.dropSub}>of klik om te bladeren · .jpg .png .pdf .heic · max 10MB</p>
-              </div>
+              <>
+                <div
+                  className={`${styles.dropzone} ${dragging ? styles.dragging : ''}`}
+                  onDragOver={(e) => { e.preventDefault(); setDragging(true) }}
+                  onDragLeave={() => setDragging(false)}
+                  onDrop={handleDrop}
+                  onClick={() => inputRef.current?.click()}
+                >
+                  <div className={styles.dropIcon}>📄</div>
+                  <h3 className={styles.dropTitle}>Sleep je beschikking hier</h3>
+                  <p className={styles.dropSub}>.jpg .png .pdf .heic · max 10MB</p>
+                </div>
+                <p className={styles.orDivider}>of</p>
+                <button
+                  className={styles.chooseFileBtn}
+                  onClick={() => inputRef.current?.click()}
+                >
+                  📎 Kies een bestand
+                </button>
+              </>
             ) : (
               <div className={styles.filePreview}>
                 <div className={styles.fileIcon}>📄</div>
