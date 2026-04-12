@@ -294,7 +294,7 @@ export default function Home() {
             <a href="#faq">FAQ</a>
             <a href="#">Privacybeleid</a>
             <a href="#">Voorwaarden</a>
-            <a href="mailto:support@boetecheck.nl">Contact</a>
+            <span className={styles.footerContact}>support@boetecheck.nl</span>
           </div>
         </div>
         <div className={`container ${styles.footerDisclaimer}`}>
