@@ -88,7 +88,7 @@ export async function analyzeBoete(
   content.push({ type: 'text', text: textPrompt })
 
   const message = await client.messages.create({
-    model: 'claude-opus-4-5',
+    model: 'claude-sonnet-4-6', // ← Bijgewerkt naar huidig model
     max_tokens: 1500,
     system: SYSTEM_PROMPT,
     messages: [{ role: 'user', content }],
