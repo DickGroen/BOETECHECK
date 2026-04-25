@@ -1,1 +1,400 @@
 
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Boete ontvangen? Laat hem checken | BoeteCheck</title>
+  <meta name="description" content="Upload jouw boetebeschikking en ontvang binnen 24 uur een volledige analyse plus kant-en-klaar bezwaarschrift. Eenmalig 29 euro.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .forwhom-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 8px; }
+    @media (max-width: 680px) { .forwhom-grid { grid-template-columns: 1fr; } }
+    .forwhom-card { border-radius: 14px; padding: 24px; }
+    .forwhom-card--yes { background: var(--green-soft); border: 1.5px solid #bbf7d0; }
+    .forwhom-card--no  { background: var(--surface); border: 1.5px solid var(--line); }
+    .forwhom-title { font-weight: 700; font-size: 1rem; margin-bottom: 14px; }
+    .forwhom-title--yes { color: var(--green); }
+    .forwhom-title--no  { color: var(--muted); }
+    .forwhom-list { list-style: none; display: grid; gap: 8px; }
+    .forwhom-list li { font-size: 0.88rem; color: var(--ink-3); display: flex; gap: 8px; line-height: 1.5; }
+    .forwhom-icon--yes { color: var(--green); font-weight: 700; flex-shrink: 0; }
+    .forwhom-icon--no  { color: var(--muted); flex-shrink: 0; }
+    .trust-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 8px; }
+    @media (max-width: 680px) { .trust-grid { grid-template-columns: 1fr; } }
+    .trust-item { background: var(--white); border: 1px solid var(--line); border-radius: 12px; padding: 20px 16px; }
+    .trust-item__label { font-size: 0.76rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--accent); margin-bottom: 6px; }
+    .trust-item__text { font-size: 0.88rem; color: var(--ink-3); line-height: 1.65; }
+    .expectation-box { background: var(--surface); border: 1.5px solid var(--line); border-radius: 14px; padding: 28px; margin-top: 8px; }
+    .expectation-row { display: flex; gap: 12px; margin-bottom: 14px; font-size: 0.9rem; color: var(--ink-3); line-height: 1.6; }
+    .expectation-icon { flex-shrink: 0; font-weight: 700; color: var(--green); }
+    .urgency-box { background: #fff7ed; border-left: 4px solid #f97316; border-radius: 8px; padding: 14px 16px; margin: 20px 0; font-size: 0.9rem; color: #7c2d12; line-height: 1.6; }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container--wide">
+    <div class="site-header__inner">
+      <div class="logo"><span class="logo-dot"></span>BoeteCheck</div>
+      <button class="header-cta" onclick="openModal()">Boete checken &mdash; &euro;29</button>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container">
+
+    <div class="hero__eyebrow" style="justify-content:center;text-align:center;display:block;margin-left:auto;margin-right:auto;">
+      Niemand betaalt graag een boete &mdash; zeker niet als hij niet klopt
+    </div>
+
+    <h1 style="text-align:center;">Boete ontvangen?<br>Je betaalt mogelijk te veel.</h1>
+
+    <p class="hero__sub" style="text-align:center;margin-left:auto;margin-right:auto;">
+      Veel boetes bevatten fouten of onvolledige informatie &mdash; onjuiste kentekenregistratie, ontbrekende borden of technische fouten.
+      Bespaar mogelijk &euro;50&ndash;&euro;400 door bezwaar te maken.
+      Upload jouw beschikking en ontvang uiterlijk morgen 16:00 een volledige analyse plus kant-en-klaar bezwaarschrift.
+      Eenmalig &euro;29 &mdash; geen abonnement.
+    </p>
+
+    <div class="urgency-box">
+      &#9200; <strong>Let op de bezwaartermijn.</strong> Bij Wahv-boetes (CJIB) heb je slechts 6 weken vanaf de datum van de beschikking. Wacht niet te lang.
+    </div>
+
+    <div class="value-strip">
+      <span class="value-item"><span class="vi-check">&#10004;</span> Analyse + bezwaarschrift uiterlijk morgen 16:00</span>
+      <span class="value-item"><span class="vi-check">&#10004;</span> Check op alle bezwaargronden</span>
+      <span class="value-item"><span class="vi-check">&#10004;</span> Eenmalig &euro;29 &middot; geen abonnement</span>
+      <span class="value-item"><span class="vi-check">&#10004;</span> Document wordt na verwerking verwijderd</span>
+    </div>
+
+    <div class="optie-grid">
+
+      <div class="optie-card optie-card--betaald">
+        <div class="optie-badge optie-badge--betaald">Meest gekozen</div>
+        <h3 class="optie-title">Volledige Analyse + Bezwaarschrift</h3>
+        <p class="optie-desc">Volledige analyse van jouw bezwaarkansen plus kant-en-klaar bezwaarschrift &mdash; uiterlijk morgen 16:00 per e-mail.</p>
+        <ul class="optie-list">
+          <li>&#10003; Check op onjuiste kentekenregistratie</li>
+          <li>&#10003; Check op ontbrekende of onduidelijke verkeersborden</li>
+          <li>&#10003; Check op technische fout (flitspaal, parkeerapparaat)</li>
+          <li>&#10003; Check op overmacht of noodsituatie</li>
+          <li>&#10003; Kant-en-klaar bezwaarschrift op naam</li>
+          <li>&#10003; Resultaat uiterlijk morgen 16:00</li>
+        </ul>
+        <div style="background:var(--accent-soft);border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-size:0.82rem;color:var(--accent);margin-bottom:16px;line-height:1.55;">
+          Jij verstuurt het bezwaarschrift zelf &mdash; 5 minuten werk dat je de volledige boete kan besparen.
+        </div>
+        <div class="optie-price">&euro;29 <span>eenmalig &middot; geen abonnement</span></div>
+        <a href="https://buy.stripe.com/JOUW_STRIPE_LINK" class="optie-btn optie-btn--betaald">Nu betalen en analyse starten &rarr;</a>
+        <p class="optie-security">&#128274; Veilig betalen via Stripe &middot; iDEAL beschikbaar</p>
+        <p class="optie-guarantee" style="font-size:0.76rem;color:var(--muted);text-align:center;margin-top:6px;">Bij inhoudelijk onvolledige analyse: geld terug.</p>
+      </div>
+
+      <div class="optie-card optie-card--gratis" style="opacity:0.85;transform:scale(0.97);transform-origin:top center;">
+        <div class="optie-badge optie-badge--gratis">Gratis</div>
+        <h3 class="optie-title" style="font-size:0.98rem;">Eerst checken?</h3>
+        <p class="optie-desc" style="font-size:0.82rem;">Nog twijfels? Ontvang gratis een eerste inschatting per e-mail.</p>
+        <ul class="optie-list" style="font-size:0.82rem;">
+          <li>&#10003; Type boete en instantie herkend</li>
+          <li>&#10003; Eerste risico-inschatting</li>
+          <li>&#10003; Uiterlijk volgende werkdag voor 16:00</li>
+        </ul>
+        <div class="optie-price" style="font-size:1.2rem;">Gratis</div>
+        <input type="file" id="gratis-file-input" accept=".pdf,.jpg,.jpeg,.png" onchange="handleGratisFileSelect(this)" style="display:none;">
+        <label class="upload-section upload-section--small" id="gratis-upload-zone" for="gratis-file-input">
+          <div class="upload-label">Beschikking uploaden</div>
+          <div class="upload-hint">PDF, JPG of PNG &middot; max. 8 MB</div>
+        </label>
+        <div id="gratis-contact-fields" style="display:none;gap:8px;flex-direction:column;">
+          <input type="text" id="gratis-name" placeholder="Jouw naam" class="optie-input">
+          <input type="email" id="gratis-email" placeholder="Jouw e-mailadres" class="optie-input">
+        </div>
+        <button class="optie-btn optie-btn--gratis" id="gratis-btn" onclick="startGratisUpload()" disabled>Gratis inschatting aanvragen</button>
+        <div class="optie-status" id="gratis-status"></div>
+      </div>
+
+    </div>
+
+    <input type="file" id="file-input" accept=".pdf,.jpg,.jpeg,.png" onchange="handleFile(this)" style="display:none;">
+    <label class="upload-section" id="upload-zone" for="file-input" style="display:none;">
+      <div class="upload-label">Beschikking uploaden</div>
+      <div class="upload-hint">PDF, JPG of PNG</div>
+    </label>
+
+    <div class="teaser" id="teaser">
+      <div class="teaser__header">
+        <div>
+          <div style="font-size:0.72rem;color:#9CA3AF;margin-bottom:4px;letter-spacing:0.05em;text-transform:uppercase;">Herkend</div>
+          <div class="teaser__company" id="teaser-company">Mogelijk onterechte boete gedetecteerd</div>
+        </div>
+        <div class="teaser__status-label">Klaar</div>
+      </div>
+      <div class="teaser__body">
+        <div class="teaser__found" id="teaser-found">Eerste bevinding:</div>
+        <div class="teaser__sub" id="teaser-sub">Jouw beschikking is herkend. Klik hieronder voor de volledige analyse.</div>
+        <div class="teaser__locked">
+          <div class="lock-icon">
+            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="white" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          </div>
+          <div class="teaser__locked-text" id="teaser-locked-text">
+            <strong>Volledige analyse na betaling</strong>
+            Bezwaargronden, inschatting en kant-en-klaar bezwaarschrift &mdash; uiterlijk morgen 16:00 per e-mail.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cta-wrap">
+      <button class="cta-main" onclick="openModal()">Boete checken &mdash; &euro;29 &middot; Resultaat uiterlijk morgen 16:00</button>
+      <div class="cta-sub">Eenmalige betaling &middot; geen abonnement &middot; &#128274; Veilig via Stripe &middot; iDEAL</div>
+    </div>
+
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-label">Zo werkt het</div>
+    <h2>In 3 stappen geregeld</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step__num">01</div>
+        <div class="step__title">Betalen en uploaden</div>
+        <div class="step__desc">Na betaling upload je jouw boetebeschikking of CJIB-brief. PDF, JPG of PNG. Duurt minder dan 2 minuten.</div>
+      </div>
+      <div class="step">
+        <div class="step__num">02</div>
+        <div class="step__title">Wij analyseren</div>
+        <div class="step__desc">We controleren op onjuiste kentekenregistratie, ontbrekende borden, technische fouten, overmacht en formele gebreken in de beschikking.</div>
+      </div>
+      <div class="step">
+        <div class="step__num">03</div>
+        <div class="step__title">Resultaat per e-mail</div>
+        <div class="step__desc">Uiterlijk morgen 16:00 ontvang je jouw analyse plus kant-en-klaar bezwaarschrift. Direct indienen bij het CJIB of de gemeente.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--alt">
+  <div class="container">
+    <div class="section-label">Voor wie is dit?</div>
+    <h2>Eerlijk: dit past niet voor iedereen</h2>
+    <div class="forwhom-grid">
+      <div class="forwhom-card forwhom-card--yes">
+        <div class="forwhom-title forwhom-title--yes">Goed geschikt als...</div>
+        <ul class="forwhom-list">
+          <li><span class="forwhom-icon--yes">&#10003;</span> Je een verkeersboete, parkeerboete of flitsboete hebt ontvangen</li>
+          <li><span class="forwhom-icon--yes">&#10003;</span> Je twijfelt of de boete terecht is opgelegd</li>
+          <li><span class="forwhom-icon--yes">&#10003;</span> De bezwaartermijn van 6 weken nog niet verstreken is</li>
+          <li><span class="forwhom-icon--yes">&#10003;</span> Je denkt aan onjuiste registratie, onduidelijke borden of overmacht</li>
+          <li><span class="forwhom-icon--yes">&#10003;</span> Je bereid bent het bezwaarschrift zelf in te dienen</li>
+        </ul>
+      </div>
+      <div class="forwhom-card forwhom-card--no">
+        <div class="forwhom-title forwhom-title--no">Minder geschikt als...</div>
+        <ul class="forwhom-list">
+          <li><span class="forwhom-icon--no">&mdash;</span> De bezwaartermijn van 6 weken al verstreken is</li>
+          <li><span class="forwhom-icon--no">&mdash;</span> Je de overtreding erkent en geen bezwaargrond hebt</li>
+          <li><span class="forwhom-icon--no">&mdash;</span> Het om een strafbeschikking gaat (dan een advocaat raadplegen)</li>
+          <li><span class="forwhom-icon--no">&mdash;</span> Je juridische vertegenwoordiging voor de rechter nodig hebt</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-label">Hoe wij werken</div>
+    <h2>Op basis van Nederlands verkeers- en bestuursrecht</h2>
+    <div class="trust-grid">
+      <div class="trust-item">
+        <div class="trust-item__label">Juridische grondslag</div>
+        <div class="trust-item__text">Onze analyse is gebaseerd op de Wet administratiefrechtelijke handhaving verkeersvoorschriften (Wahv), de Gemeentewet en de Awb.</div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-item__label">Wat wij controleren</div>
+        <div class="trust-item__text">Kentekenregistratie, verkeersborden, kalibratie van flitspalen, overmacht, formele vereisten van de beschikking en de bezwaartermijn.</div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-item__label">Wat wij niet zijn</div>
+        <div class="trust-item__text">Wij verlenen geen juridisch advies en treden niet op als vertegenwoordiger. Bij complexe zaken raden wij het Juridisch Loket of een advocaat aan.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--alt">
+  <div class="container">
+    <div class="section-label">Eerlijk gezegd</div>
+    <h2>Wat je moet weten &mdash; voor je betaalt</h2>
+    <div class="expectation-box">
+      <div class="expectation-row"><span class="expectation-icon">&#10003;</span><span>Je ontvangt een kant-en-klaar bezwaarschrift dat je per post of e-mail indient bij het CJIB of de gemeente. Dat kost je 5 minuten.</span></div>
+      <div class="expectation-row"><span class="expectation-icon">&#10003;</span><span>Bij Wahv-boetes schorst het indienen van bezwaar de invordering automatisch &mdash; je hoeft niet te betalen terwijl je bezwaar loopt.</span></div>
+      <div class="expectation-row"><span class="expectation-icon">&#10003;</span><span>Als jouw boete niet aanvechtbaar blijkt, ontvang je toch een volledig rapport met uitleg en concrete vervolgstappen. Geen leeg rapport.</span></div>
+      <div class="expectation-row"><span class="expectation-icon">&#10003;</span><span>Bij afwijzing zijn er vervolgstappen: beroep bij de kantonrechter (Wahv) of bestuursrechter (parkeerboete).</span></div>
+      <div class="expectation-row" style="margin-bottom:0;"><span class="expectation-icon">&#9200;</span><span>De bezwaartermijn is 6 weken na de datum van de beschikking. Dien het bezwaar zo snel mogelijk in.</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-label">De feiten</div>
+    <h2>Weet wanneer je bezwaar kunt maken</h2>
+    <div class="proof-grid">
+      <div class="proof-item"><div class="proof-num">6 weken</div><div class="proof-label">Bezwaartermijn bij Wahv-boetes (CJIB) en parkeerboetes</div></div>
+      <div class="proof-item"><div class="proof-num">&euro;0</div><div class="proof-label">Kosten voor het indienen van bezwaar bij Wahv &mdash; gratis wettelijk recht</div></div>
+      <div class="proof-item"><div class="proof-num">&euro;29</div><div class="proof-label">BoeteCheck analyse &mdash; veel minder dan een boete van &euro;100+ gewoon betalen</div></div>
+      <div class="proof-item"><div class="proof-num">24 uur</div><div class="proof-label">Analyse + bezwaarschrift in jouw inbox</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--alt">
+  <div class="container">
+    <div class="section-label">Veelgestelde vragen</div>
+    <h2>Alles wat je wil weten</h2>
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Welke boetes kan ik uploaden?
+          <svg class="faq-chevron" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
+        <div class="faq-a">Verkeersboetes (Wahv), parkeerboetes (naheffingsaanslag), flitsboetes en andere boetebeschikkingen van het CJIB, politie of gemeenten. Zowel PDF als foto (JPG/PNG) worden ondersteund.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Hoe lang heb ik om bezwaar te maken?
+          <svg class="faq-chevron" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
+        <div class="faq-a">Bij Wahv-boetes (CJIB) heb je 6 weken vanaf de datum van de beschikking. Bij gemeentelijke parkeerboetes ook 6 weken. Na het verstrijken is bezwaar in de meeste gevallen niet meer mogelijk.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Hoef ik de boete te betalen terwijl mijn bezwaar loopt?
+          <svg class="faq-chevron" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
+        <div class="faq-a">Bij Wahv-boetes schorst het indienen van bezwaar de invordering automatisch. Bij gemeentelijke parkeerboetes is een apart verzoek tot schorsing mogelijk.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Ik was niet de bestuurder &mdash; kan ik dan bezwaar maken?
+          <svg class="faq-chevron" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
+        <div class="faq-a">Bij Wahv-boetes op kenteken is de eigenaar aansprakelijk. Als jij niet reed, kun je de werkelijke bestuurder opgeven of bezwaar maken op basis van het feit dat jij de overtreding niet hebt begaan. Wij analyseren dit in de beschikking.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Wat als mijn boete toch terecht blijkt?
+          <svg class="faq-chevron" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
+        <div class="faq-a">Je ontvangt altijd een volledig rapport met een heldere uitleg en concrete vervolgstappen. Je betaalt nooit voor een leeg rapport.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Is dit juridisch advies?
+          <svg class="faq-chevron" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
+        <div class="faq-a">Nee. Dit is een informatieve analyse op basis van jouw document. Wij verlenen geen juridisch advies. Bij complexe situaties raden wij het Juridisch Loket of een advocaat aan.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer class="disclaimer">
+  <div class="container">
+    <p>BoeteCheck biedt informatieve analyses en stelt conceptbezwaarschriften op op basis van de Wahv, Gemeentewet en Awb. Wij verlenen geen juridisch advies. Een bezwaarschrift garandeert geen gegrondverklaring. Raadpleeg bij twijfel het Juridisch Loket of een advocaat. Documenten worden na verwerking verwijderd. &copy; 2025 BoeteCheck.</p>
+  </div>
+</footer>
+
+<div class="sticky-footer" id="sticky-footer">
+  <div>
+    <div class="sticky-footer__text">Boete ontvangen? Check hem eerst.</div>
+    <div class="sticky-footer__sub">Bezwaartermijn: 6 weken &middot; eenmalig &euro;29</div>
+  </div>
+  <button class="sticky-cta" onclick="openModal()">Boete checken &mdash; &euro;29 &rarr;</button>
+</div>
+
+<div class="modal-overlay" id="modal" onclick="closeModalOutside(event)">
+  <div class="modal">
+    <div class="modal__header">
+      <div class="modal__eyebrow">Wat je ontvangt</div>
+      <div class="modal__title">Analyse + bezwaarschrift uiterlijk morgen 16:00</div>
+      <div class="modal__sub">Na betaling upload je jouw beschikking. Wij analyseren en sturen het resultaat uiterlijk morgen 16:00 per e-mail.</div>
+      <div class="modal__price">&euro;29 <span style="font-size:1rem;color:#9CA3AF;font-weight:400;">eenmalig &middot; geen abonnement</span></div>
+    </div>
+    <div class="modal__body">
+      <div class="modal__feature"><div class="check">&#10003;</div><div>Check op alle bezwaargronden (kenteken, borden, technisch, overmacht)</div></div>
+      <div class="modal__feature"><div class="check">&#10003;</div><div>Volledige analyse van jouw bezwaarkansen</div></div>
+      <div class="modal__feature"><div class="check">&#10003;</div><div>Kant-en-klaar bezwaarschrift &mdash; direct indienen</div></div>
+      <div class="modal__feature"><div class="check">&#10003;</div><div>Bij Wahv: bezwaar schorst de invordering automatisch</div></div>
+      <div class="modal__disclaimer">&#8505;&#65039; Dit is een informatieve analyse, geen juridisch advies. Let op de bezwaartermijn van 6 weken.</div>
+      <p id="modal-dynamic-copy" style="margin-bottom:16px;color:#6b7a90;font-size:0.9rem;">Wij hebben al eerste aanwijzingen herkend. De volledige beoordeling volgt na betaling.</p>
+      <a href="https://buy.stripe.com/JOUW_STRIPE_LINK" class="modal__cta">&euro;29 betalen en analyse ontvangen &rarr;</a>
+      <div class="modal__security">&#128274; Veilig betalen via Stripe &middot; iDEAL beschikbaar</div>
+      <div class="modal__close" onclick="closeModal()">Annuleren</div>
+    </div>
+  </div>
+</div>
+
+<script src="app.js"></script>
+<script>
+const WORKER_URL = 'https://boetecheck.dickgroen2.workers.dev';
+let gratisFile = null;
+
+function handleGratisFileSelect(input) {
+  if (!input.files || !input.files[0]) return;
+  gratisFile = input.files[0];
+  const zone = document.getElementById('gratis-upload-zone');
+  zone.innerHTML = '<div class="upload-label" style="color:var(--green);">&#10003; ' + escapeHtmlLocal(gratisFile.name) + '</div><div class="upload-hint">Bestand geselecteerd</div>';
+  document.getElementById('gratis-contact-fields').style.display = 'flex';
+  checkGratisReady();
+}
+
+function escapeHtmlLocal(str) {
+  return String(str || '').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;');
+}
+
+function checkGratisReady() {
+  const name = document.getElementById('gratis-name').value.trim();
+  const email = document.getElementById('gratis-email').value.trim();
+  document.getElementById('gratis-btn').disabled = !(name && email && email.includes('@') && gratisFile);
+}
+
+document.getElementById('gratis-name').addEventListener('input', checkGratisReady);
+document.getElementById('gratis-email').addEventListener('input', checkGratisReady);
+
+async function startGratisUpload() {
+  const name = document.getElementById('gratis-name').value.trim();
+  const email = document.getElementById('gratis-email').value.trim();
+  const btn = document.getElementById('gratis-btn');
+  const status = document.getElementById('gratis-status');
+  if (!gratisFile) return;
+  btn.disabled = true;
+  btn.textContent = 'Wordt verstuurd...';
+  status.className = 'optie-status optie-status--info';
+  status.textContent = 'Jouw beschikking wordt geanalyseerd...';
+  const formData = new FormData();
+  formData.append('file', gratisFile);
+  formData.append('name', name);
+  formData.append('email', email);
+  try {
+    const res = await fetch(WORKER_URL + '/analyze-free', { method: 'POST', body: formData });
+    const data = await res.json();
+    if (data.ok) {
+      status.className = 'optie-status optie-status--success';
+      status.textContent = 'Je ontvangt jouw inschatting uiterlijk de volgende werkdag voor 16:00 per e-mail.';
+      btn.textContent = 'Verstuurd';
+    } else { throw new Error(data.error || 'Fout'); }
+  } catch (err) {
+    status.className = 'optie-status optie-status--error';
+    status.textContent = 'Fout: ' + err.message;
+    btn.disabled = false;
+    btn.textContent = 'Gratis inschatting aanvragen';
+  }
+}
+</script>
+</body>
+</html>
